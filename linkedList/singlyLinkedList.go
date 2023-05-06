@@ -34,6 +34,18 @@ func NewSinglyLinkedList(values []int) *SinglyLinkedList {
 	return &SinglyLinkedList{head: head}
 }
 
+func (l *SinglyLinkedList) Length() int {
+	len := 0
+	cursor := l.head
+
+	for cursor != nil {
+		len++
+		cursor = cursor.Next
+	}
+
+	return len
+}
+
 func (l *SinglyLinkedList) Traverse() {
 	cursor := l.head
 
@@ -64,6 +76,10 @@ func (l *SinglyLinkedList) InsertEnd(value int) {
 func (l *SinglyLinkedList) InsertPos(value int, pos int) {
 	if pos == 0 {
 		l.InsertStart(value)
+		return
+	}
+
+	if pos > l.Length()-1 {
 		return
 	}
 
@@ -103,6 +119,10 @@ func (l *SinglyLinkedList) DeleteEnd() {
 func (l *SinglyLinkedList) DeletePos(pos int) {
 	if pos == 0 {
 		l.DeleteStart()
+	}
+
+	if pos > l.Length()-1 {
+		return
 	}
 
 	cursor := l.head

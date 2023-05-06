@@ -36,6 +36,18 @@ func NewDoublyLinkeList(values []int) *DoublyLinkedList {
 	return &DoublyLinkedList{head: head, tail: tail}
 }
 
+func (l *DoublyLinkedList) Length() int {
+	len := 0
+	cursor := l.head
+
+	for cursor != nil {
+		len++
+		cursor = cursor.Next
+	}
+
+	return len
+}
+
 func (l *DoublyLinkedList) Traverse() {
 	cursor := l.head
 	for cursor != nil {
@@ -74,6 +86,10 @@ func (l *DoublyLinkedList) InsertPos(value int, pos int) {
 		return
 	}
 
+	if pos > l.Length()-1 {
+		return
+	}
+
 	cursor := l.head
 	nodeIndex := 0
 
@@ -104,6 +120,10 @@ func (l *DoublyLinkedList) DeleteEnd() {
 func (l *DoublyLinkedList) DeletePos(pos int) {
 	if pos == 0 {
 		l.DeleteStart()
+		return
+	}
+
+	if pos > l.Length()-1 {
 		return
 	}
 
