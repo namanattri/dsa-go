@@ -33,11 +33,21 @@ func NewSinglyLinkedList(values []int) *SinglyLinkedList {
 }
 
 func (l *SinglyLinkedList) Traverse() {
-	fmt.Println("Traversion singly linked list: ")
+	fmt.Println("Traversing the singly linked list: ")
 	cursor := l.head
 
 	for cursor != nil {
-		fmt.Println(cursor.Value)
+		fmt.Printf("%d -> ", cursor.Value)
 		cursor = cursor.Next
 	}
+	fmt.Println("X")
+}
+
+func (l *SinglyLinkedList) InsertStart(value int) {
+	fmt.Printf("Inserting %d at the begining of the linked list\n", value)
+	node := NewNode(value)
+	node.Next = l.head
+	l.head = node
+
+	l.Traverse()
 }
