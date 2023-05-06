@@ -51,3 +51,17 @@ func (l *SinglyLinkedList) InsertStart(value int) {
 
 	l.Traverse()
 }
+
+func (l *SinglyLinkedList) InsertEnd(value int) {
+	fmt.Printf("Inserting %d at the begining of the linked list\n", value)
+	cursor := l.head
+
+	for cursor.Next != nil {
+		cursor = cursor.Next
+	}
+
+	node := NewNode(value)
+	cursor.Next = node
+
+	l.Traverse()
+}
