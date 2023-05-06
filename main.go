@@ -7,5 +7,9 @@ func main() {
 	l.Traverse()
 
 	l.InsertStart(4)
+	l.Traverse()
 	l.InsertEnd(8)
+	l.Traverse()
+	l.InsertPos(15, 3)
+	l.Traverse()
 }

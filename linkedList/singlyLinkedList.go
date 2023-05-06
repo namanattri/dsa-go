@@ -1,6 +1,8 @@
 package linkedList
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type SinglyLinkedListNode struct {
 	Value int
@@ -48,8 +50,6 @@ func (l *SinglyLinkedList) InsertStart(value int) {
 	node := NewNode(value)
 	node.Next = l.head
 	l.head = node
-
-	l.Traverse()
 }
 
 func (l *SinglyLinkedList) InsertEnd(value int) {
@@ -62,6 +62,28 @@ func (l *SinglyLinkedList) InsertEnd(value int) {
 
 	node := NewNode(value)
 	cursor.Next = node
+}
 
-	l.Traverse()
+func (l *SinglyLinkedList) InsertPos(value int, pos int) {
+	fmt.Printf("Inserting %d as node %d of the linked list\n", value, pos)
+	if pos == 0 {
+		l.InsertStart(value)
+		return
+	}
+
+	nodeIndex := 0
+	cursor := l.head
+	node := NewNode(value)
+
+	for cursor.Next != nil {
+		if nodeIndex == pos-1 {
+			node.Next = cursor.Next
+			cursor.Next = node
+			return
+		}
+		cursor = cursor.Next
+		nodeIndex++
+	}
+
+	cursor.Next = node
 }
