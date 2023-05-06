@@ -35,7 +35,6 @@ func NewSinglyLinkedList(values []int) *SinglyLinkedList {
 }
 
 func (l *SinglyLinkedList) Traverse() {
-	fmt.Println("Traversing the singly linked list: ")
 	cursor := l.head
 
 	for cursor != nil {
@@ -46,14 +45,12 @@ func (l *SinglyLinkedList) Traverse() {
 }
 
 func (l *SinglyLinkedList) InsertStart(value int) {
-	fmt.Printf("Inserting %d at the begining of the linked list\n", value)
 	node := NewNode(value)
 	node.Next = l.head
 	l.head = node
 }
 
 func (l *SinglyLinkedList) InsertEnd(value int) {
-	fmt.Printf("Inserting %d at the begining of the linked list\n", value)
 	cursor := l.head
 
 	for cursor.Next != nil {
@@ -65,7 +62,6 @@ func (l *SinglyLinkedList) InsertEnd(value int) {
 }
 
 func (l *SinglyLinkedList) InsertPos(value int, pos int) {
-	fmt.Printf("Inserting %d as node %d of the linked list\n", value, pos)
 	if pos == 0 {
 		l.InsertStart(value)
 		return
@@ -86,4 +82,38 @@ func (l *SinglyLinkedList) InsertPos(value int, pos int) {
 	}
 
 	cursor.Next = node
+}
+
+func (l *SinglyLinkedList) DeleteStart() {
+	l.head = l.head.Next
+}
+
+func (l *SinglyLinkedList) DeleteEnd() {
+	cursor := l.head
+	prevNode := cursor
+
+	for cursor.Next != nil {
+		prevNode = cursor
+		cursor = cursor.Next
+	}
+
+	prevNode.Next = nil
+}
+
+func (l *SinglyLinkedList) DeletePos(pos int) {
+	if pos == 0 {
+		l.DeleteStart()
+	}
+
+	cursor := l.head
+	nodeIndex := 0
+
+	for cursor.Next != nil {
+		if nodeIndex == pos-1 {
+			cursor.Next = cursor.Next.Next
+			return
+		}
+		cursor = cursor.Next
+		nodeIndex++
+	}
 }
