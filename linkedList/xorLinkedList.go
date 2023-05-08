@@ -134,7 +134,6 @@ func (l *XORLinkedList) InsertPos(value int, pos int) {
 		prevNode.PointerDifference = prevNode.PointerDifference ^ uintptr(unsafe.Pointer(node))
 		l.tail = node
 	} else { // Insert in the middle of the list
-		fmt.Println("line 137")
 		node.PointerDifference = prev ^ uintptr(unsafe.Pointer(cursor))
 		prevNode := (*XORLinkedListNode)(unsafe.Pointer(prev))
 		prevNode.PointerDifference = prevNode.PointerDifference ^ uintptr(unsafe.Pointer(node)) ^ uintptr(unsafe.Pointer(cursor))
@@ -174,4 +173,27 @@ func (l *XORLinkedList) DeleteEnd() {
 	prevNode := (*XORLinkedListNode)(unsafe.Pointer(prev))
 	prevNode.PointerDifference = prevNode.PointerDifference ^ uintptr(unsafe.Pointer(l.tail)) ^ uintptr(0)
 	l.tail = prevNode
+}
+
+func (l *XORLinkedList) DeletePos(pos int) {
+	// Check if pos is out of bounds
+	if pos < 0 || pos > l.Length() {
+		return
+	}
+
+	// Traverse the list to find the node at the specified position
+	prev := uintptr(0)
+	cursor := l.head
+	i := 0
+	for i < pos && cursor != nil {
+		next := prev ^ cursor.PointerDifference
+		prev = uintptr(unsafe.Pointer(cursor))
+		cursor = (*XORLinkedListNode)(unsafe.Pointer(next))
+		i++
+	}
+
+	prevNode := (*XORLinkedListNode)(unsafe.Pointer(prev))
+	nextNode := (*XORLinkedListNode)(unsafe.Pointer(prev ^ cursor.PointerDifference))
+	prevNode.PointerDifference = prevNode.PointerDifference ^ uintptr(unsafe.Pointer(cursor)) ^ uintptr(unsafe.Pointer(nextNode))
+	nextNode.PointerDifference = nextNode.PointerDifference ^ uintptr(unsafe.Pointer(cursor)) ^ uintptr(unsafe.Pointer(prevNode))
 }
