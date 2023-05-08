@@ -40,15 +40,15 @@ func XORLinkedListOps() {
 	l.Traverse()
 	l.TraverseBackwards()
 
-	// fmt.Println("Deleting a node from the begining of the linked list")
-	// l.DeleteStart()
-	// l.Traverse()
-	// l.TraverseBackwards()
+	fmt.Println("Deleting a node from the begining of the linked list")
+	l.DeleteStart()
+	l.Traverse()
+	l.TraverseBackwards()
 
-	// fmt.Println("Deleting a node from the tail of the linked list")
-	// l.DeleteEnd()
-	// l.Traverse()
-	// l.TraverseBackwards()
+	fmt.Println("Deleting a node from the tail of the linked list")
+	l.DeleteEnd()
+	l.Traverse()
+	l.TraverseBackwards()
 
 	// fmt.Printf("Deleting a node at index %d of the linked list\n", 4)
 	// l.DeletePos(4)

@@ -141,3 +141,37 @@ func (l *XORLinkedList) InsertPos(value int, pos int) {
 		cursor.PointerDifference = cursor.PointerDifference ^ prev ^ uintptr(unsafe.Pointer(node))
 	}
 }
+
+func (l *XORLinkedList) DeleteStart() {
+	if l.Length() == 0 {
+		return
+	}
+
+	if l.Length() == 1 {
+		l.head = nil
+		l.tail = nil
+		return
+	}
+
+	next := l.head.PointerDifference ^ uintptr(0)
+	nextNode := (*XORLinkedListNode)(unsafe.Pointer(next))
+	nextNode.PointerDifference = nextNode.PointerDifference ^ uintptr(unsafe.Pointer(l.head)) ^ uintptr(0)
+	l.head = nextNode
+}
+
+func (l *XORLinkedList) DeleteEnd() {
+	if l.Length() == 0 {
+		return
+	}
+
+	if l.Length() == 1 {
+		l.head = nil
+		l.tail = nil
+		return
+	}
+
+	prev := l.tail.PointerDifference ^ uintptr(0)
+	prevNode := (*XORLinkedListNode)(unsafe.Pointer(prev))
+	prevNode.PointerDifference = prevNode.PointerDifference ^ uintptr(unsafe.Pointer(l.tail)) ^ uintptr(0)
+	l.tail = prevNode
+}
