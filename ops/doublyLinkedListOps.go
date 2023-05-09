@@ -7,9 +7,9 @@ import (
 
 func DoublyLinkedListOps() {
 	l := linkedList.NewDoublyLinkeList([]int{7, 22, 13, 34, 76, 2, 88})
-	fmt.Println("Traversing the singly linked list: ")
+	fmt.Println("Traversing the doubly linked list: ")
 	l.Traverse()
-	fmt.Println("Traversing the singly linked list backwards: ")
+	fmt.Println("Traversing the doubly linked list backwards: ")
 	l.TraverseBackwards()
 
 	fmt.Printf("Inserting %d at the begining of the linked list\n", 4)

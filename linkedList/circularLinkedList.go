@@ -116,8 +116,17 @@ func (l *CircularLinkedList) InsertEnd(value int) {
 }
 
 func (l *CircularLinkedList) InsertPos(value int, pos int) {
+	if pos < 0 || pos > l.Length() {
+		return
+	}
+
 	if pos == 0 {
 		l.InsertStart(value)
+		return
+	}
+
+	if pos == l.Length()-1 {
+		l.InsertEnd(value)
 		return
 	}
 
@@ -182,8 +191,17 @@ func (l *CircularLinkedList) DeleteEnd() {
 }
 
 func (l *CircularLinkedList) DeletePos(pos int) {
+	if pos < 0 || pos > l.Length() {
+		return
+	}
+
 	if pos == 0 {
 		l.DeleteStart()
+		return
+	}
+
+	if pos == l.Length()-1 {
+		l.DeleteEnd()
 		return
 	}
 

@@ -81,12 +81,17 @@ func (l *DoublyLinkedList) InsertEnd(value int) {
 }
 
 func (l *DoublyLinkedList) InsertPos(value int, pos int) {
+	if pos < 0 || pos > l.Length() {
+		return
+	}
+
 	if pos == 0 {
 		l.InsertStart(value)
 		return
 	}
 
-	if pos > l.Length()-1 {
+	if pos == l.Length()-1 {
+		l.InsertEnd(value)
 		return
 	}
 
@@ -118,12 +123,17 @@ func (l *DoublyLinkedList) DeleteEnd() {
 }
 
 func (l *DoublyLinkedList) DeletePos(pos int) {
+	if pos < 0 || pos > l.Length() {
+		return
+	}
+
 	if pos == 0 {
 		l.DeleteStart()
 		return
 	}
 
-	if pos > l.Length()-1 {
+	if pos == l.Length()-1 {
+		l.DeleteEnd()
 		return
 	}
 

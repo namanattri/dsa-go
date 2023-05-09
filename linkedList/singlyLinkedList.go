@@ -74,12 +74,17 @@ func (l *SinglyLinkedList) InsertEnd(value int) {
 }
 
 func (l *SinglyLinkedList) InsertPos(value int, pos int) {
+	if pos < 0 || pos > l.Length() {
+		return
+	}
+
 	if pos == 0 {
 		l.InsertStart(value)
 		return
 	}
 
-	if pos > l.Length()-1 {
+	if pos == l.Length()-1 {
+		l.InsertEnd(value)
 		return
 	}
 
@@ -117,11 +122,17 @@ func (l *SinglyLinkedList) DeleteEnd() {
 }
 
 func (l *SinglyLinkedList) DeletePos(pos int) {
-	if pos == 0 {
-		l.DeleteStart()
+	if pos < 0 || pos > l.Length() {
+		return
 	}
 
-	if pos > l.Length()-1 {
+	if pos == 0 {
+		l.DeleteStart()
+		return
+	}
+
+	if pos == l.Length()-1 {
+		l.DeleteEnd()
 		return
 	}
 
