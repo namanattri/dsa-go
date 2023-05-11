@@ -1,18 +1,20 @@
 package linkedList
 
+import "math"
+
 type UnrolledLinkedListNode struct {
-	Value int
-	Next  *UnrolledLinkedListNode
+	value int
+	next  *UnrolledLinkedListNode
 }
 
 func NewUnrolledLinkedListNode(value int) *UnrolledLinkedListNode {
-	return &UnrolledLinkedListNode{Value: value}
+	return &UnrolledLinkedListNode{value: value}
 }
 
 // circular linked list block
 type UnrolledLinkedListBlock struct {
-	Head *UnrolledLinkedListNode // Head pointing to the circular linked list inside the block
-	Next *UnrolledLinkedListBlock
+	head *UnrolledLinkedListNode // Head pointing to the circular linked list inside the block
+	next *UnrolledLinkedListBlock
 }
 
 func NewUnrolledLinkedListBlock(values []int) *UnrolledLinkedListBlock {
@@ -26,18 +28,61 @@ func NewUnrolledLinkedListBlock(values []int) *UnrolledLinkedListBlock {
 			cursor = node
 			continue
 		}
-		cursor.Next = node
+		cursor.next = node
 		cursor = node
 	}
-	cursor.Next = head
+	cursor.next = head
 
-	return &UnrolledLinkedListBlock{Head: head}
+	return &UnrolledLinkedListBlock{head: head}
+}
+
+func (b *UnrolledLinkedListBlock) Length() int {
+	len := 0
+	cursor := b.head
+	for cursor != nil {
+		len++
+		cursor = cursor.next
+	}
+	return len
 }
 
 type UnrolledLinkedList struct {
-	Head *UnrolledLinkedListBlock
+	head *UnrolledLinkedListBlock
 }
 
 func NewUnrolledLinkedList(values []int) *UnrolledLinkedList {
-	return &UnrolledLinkedList{}
+	length := len(values)
+	blockSize := math.Ceil(math.Sqrt(float64(length)))
+	head := (*UnrolledLinkedListBlock)(nil)
+	cursor := (*UnrolledLinkedListBlock)(nil)
+
+	for i := 0; i < length; i += int(blockSize) {
+		end := i + int(blockSize)
+		if end > length {
+			end = length
+		}
+		block := NewUnrolledLinkedListBlock(values[i:end])
+
+		if head == nil {
+			head = block
+			cursor = block
+			continue
+		}
+
+		cursor.next = block
+		cursor = cursor.next
+	}
+	return &UnrolledLinkedList{head: head}
+}
+
+func (l *UnrolledLinkedList) Length() int {
+	len := 0
+	cursor := l.head
+
+	for cursor != nil {
+		len++
+		cursor = cursor.next
+	}
+
+	return len
 }
