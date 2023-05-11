@@ -11,13 +11,27 @@ func NewUnrolledLinkedListNode(value int) *UnrolledLinkedListNode {
 
 // circular linked list block
 type UnrolledLinkedListBlock struct {
-	Length int
-	Head   *UnrolledLinkedListNode
-	Next   *UnrolledLinkedListBlock
+	Head *UnrolledLinkedListNode // Head pointing to the circular linked list inside the block
+	Next *UnrolledLinkedListBlock
 }
 
-func NewUnrolledLinkedListBlock(length int, head *UnrolledLinkedListNode) *UnrolledLinkedListBlock {
-	return &UnrolledLinkedListBlock{Length: length, Head: head}
+func NewUnrolledLinkedListBlock(values []int) *UnrolledLinkedListBlock {
+	head := (*UnrolledLinkedListNode)(nil)
+	cursor := (*UnrolledLinkedListNode)(nil)
+
+	for _, value := range values {
+		node := NewUnrolledLinkedListNode(value)
+		if head == nil {
+			head = node
+			cursor = node
+			continue
+		}
+		cursor.Next = node
+		cursor = node
+	}
+	cursor.Next = head
+
+	return &UnrolledLinkedListBlock{Head: head}
 }
 
 type UnrolledLinkedList struct {
