@@ -57,6 +57,7 @@ func (b *UnrolledLinkedListBlock) Traverse() {
 		if cursor.next == b.head {
 			break
 		}
+		cursor = cursor.next
 	}
 	fmt.Print("X ]")
 }
