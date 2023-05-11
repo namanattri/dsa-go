@@ -1,6 +1,9 @@
 package linkedList
 
-import "math"
+import (
+	"fmt"
+	"math"
+)
 
 type UnrolledLinkedListNode struct {
 	value int
@@ -46,6 +49,18 @@ func (b *UnrolledLinkedListBlock) Length() int {
 	return len
 }
 
+func (b *UnrolledLinkedListBlock) Traverse() {
+	cursor := b.head
+	fmt.Print("[ ")
+	for {
+		fmt.Printf("%d -> ", cursor.value)
+		if cursor.next == b.head {
+			break
+		}
+	}
+	fmt.Print("X ]")
+}
+
 type UnrolledLinkedList struct {
 	head *UnrolledLinkedListBlock
 }
@@ -85,4 +100,14 @@ func (l *UnrolledLinkedList) Length() int {
 	}
 
 	return len
+}
+
+func (l *UnrolledLinkedList) Traverse() {
+	cursor := l.head
+	for cursor != nil {
+		cursor.Traverse()
+		fmt.Print(" -> ")
+		cursor = cursor.next
+	}
+	fmt.Println("X")
 }
