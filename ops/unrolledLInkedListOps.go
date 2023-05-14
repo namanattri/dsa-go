@@ -11,9 +11,9 @@ func UnrolledLinkedListOps() {
 	fmt.Println("Traversing the unrolled linked list: ")
 	l.Traverse()
 
-	// fmt.Printf("Inserting %d at the begining of the linked list\n", 4)
-	// l.InsertStart(4)
-	// l.Traverse()
+	fmt.Printf("Inserting %d at the begining of the linked list\n", 4)
+	l.InsertStart(4)
+	l.Traverse()
 
 	// fmt.Printf("Inserting %d at the end of the linked list\n", 8)
 	// l.InsertEnd(8)

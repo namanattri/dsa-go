@@ -63,7 +63,8 @@ func (b *UnrolledLinkedListBlock) Traverse() {
 }
 
 type UnrolledLinkedList struct {
-	head *UnrolledLinkedListBlock
+	head      *UnrolledLinkedListBlock
+	blockSize int
 }
 
 func NewUnrolledLinkedList(values []int) *UnrolledLinkedList {
@@ -88,7 +89,7 @@ func NewUnrolledLinkedList(values []int) *UnrolledLinkedList {
 		cursor.next = block
 		cursor = cursor.next
 	}
-	return &UnrolledLinkedList{head: head}
+	return &UnrolledLinkedList{head: head, blockSize: int(blockSize)}
 }
 
 func (l *UnrolledLinkedList) Length() int {
@@ -111,4 +112,36 @@ func (l *UnrolledLinkedList) Traverse() {
 		cursor = cursor.next
 	}
 	fmt.Println("X")
+}
+
+func (l *UnrolledLinkedList) InsertStart(value int) {
+	node := NewUnrolledLinkedListNode(value)
+	block := l.head
+
+	for block != nil {
+		fmt.Println(block.head.value)
+
+		prev := (*UnrolledLinkedListNode)(nil)
+		cursor := block.head
+
+		blockLength := 0
+		for cursor.next != block.head {
+			prev = cursor
+			cursor = cursor.next
+			blockLength++
+		}
+
+		node.next = block.head
+		block.head = node
+
+		fmt.Printf("len: %d size: %d", blockLength, l.blockSize)
+		if blockLength > l.blockSize {
+			prev.next = block.head
+			node = cursor
+		} else {
+			cursor.next = block.head
+		}
+
+		block = block.next
+	}
 }
