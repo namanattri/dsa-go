@@ -73,3 +73,7 @@ func (s *StaticArrayStack) IsEmptyStack() bool {
 func (s *StaticArrayStack) IsFullStack() bool {
 	return s.top == s.capacity-1
 }
+
+func (s *StaticArrayStack) String() string {
+	return fmt.Sprintf("Stack:: Top: %d, Size: %d, Capacity: %d, Values: %v\n", s.Top(), s.Size(), s.Capacity(), s.Array())
+}

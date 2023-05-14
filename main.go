@@ -8,5 +8,6 @@ func main() {
 	// ops.CircularLinkedListOps()
 	// ops.XORLinkedListOps()
 	// ops.UnrolledLinkedListOps()
-	ops.StaticArrayStackOps()
+	// ops.StaticArrayStackOps()
+	ops.DynamicArrayStackOps()
 }

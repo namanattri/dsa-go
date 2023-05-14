@@ -5,8 +5,8 @@ import (
 	"fmt"
 )
 
-func StaticArrayStackOps() {
-	s := stack.NewStaticArrayStack()
+func DynamicArrayStackOps() {
+	s := stack.NewDynamicArrayStack()
 	fmt.Println(s)
 
 	fmt.Printf("Trying to Peek\n")
