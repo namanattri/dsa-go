@@ -7,5 +7,6 @@ func main() {
 	// ops.DoublyLinkedListOps()
 	// ops.CircularLinkedListOps()
 	// ops.XORLinkedListOps()
-	ops.UnrolledLinkedListOps()
+	// ops.UnrolledLinkedListOps()
+	ops.StaticArrayStackOps()
 }
