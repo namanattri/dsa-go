@@ -10,5 +10,6 @@ func main() {
 	// ops.UnrolledLinkedListOps()
 	// ops.StaticArrayStackOps()
 	// ops.DynamicArrayStackOps()
-	ops.LinkedListStackOps()
+	// ops.LinkedListStackOps()
+	ops.StaticArrayQueueOps()
 }
