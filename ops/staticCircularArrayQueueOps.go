@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func StaticArrayQueueOps() {
+func StaticCircularArrayQueueOps() {
 	q := queue.NewStaticCircularArrayQueue(10)
 	fmt.Println(q)
 
@@ -74,7 +74,7 @@ func StaticArrayQueueOps() {
 		if err != nil {
 			fmt.Printf("Error encountered while popping: %v\n", err)
 		} else {
-			fmt.Printf("Pop: %d\n", value)
+			fmt.Printf("Dequeue: %d\n", value)
 		}
 		fmt.Println(q)
 	}

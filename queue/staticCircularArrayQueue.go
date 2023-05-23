@@ -66,6 +66,8 @@ func (q *StaticCircularArrayQueue) Dequeue() (int, error) {
 	}
 
 	value := q.array[q.front]
+	q.array[q.front] = 0
+
 	if q.front == q.rear {
 		q.front = -1
 		q.rear = -1
@@ -77,5 +79,5 @@ func (q *StaticCircularArrayQueue) Dequeue() (int, error) {
 }
 
 func (q *StaticCircularArrayQueue) String() string {
-	return fmt.Sprintf("Stack:: Front: %d Rear: %d Size: %d, Capacity: %d, Values: %v\n", q.front, q.rear, q.Size(), q.Capacity(), q.Array())
+	return fmt.Sprintf("Queue:: Front: %d Rear: %d Size: %d, Capacity: %d, Values: %v\n", q.front, q.rear, q.Size(), q.Capacity(), q.Array())
 }
