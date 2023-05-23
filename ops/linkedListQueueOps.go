@@ -6,8 +6,8 @@ import (
 	"math/rand"
 )
 
-func DynamicCircularArrayQueueOps() {
-	q := queue.NewDynamicCircularArrayQueue(10)
+func LinkedListQueueOps() {
+	q := queue.NewLinkedListQueue()
 	fmt.Println(q)
 
 	fmt.Printf("Trying to Front\n")

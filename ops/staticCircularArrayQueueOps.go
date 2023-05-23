@@ -72,7 +72,7 @@ func StaticCircularArrayQueueOps() {
 		value, err := q.Dequeue()
 
 		if err != nil {
-			fmt.Printf("Error encountered while popping: %v\n", err)
+			fmt.Printf("Error encountered while dequeueing: %v\n", err)
 		} else {
 			fmt.Printf("Dequeue: %d\n", value)
 		}

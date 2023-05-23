@@ -12,5 +12,6 @@ func main() {
 	// ops.DynamicArrayStackOps()
 	// ops.LinkedListStackOps()
 	// ops.StaticCircularArrayQueueOps()
-	ops.DynamicCircularArrayQueueOps()
+	// ops.DynamicCircularArrayQueueOps()
+	ops.LinkedListQueueOps()
 }
