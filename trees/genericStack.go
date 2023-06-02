@@ -6,17 +6,17 @@ type NodeType interface {
 	int | *BinaryTreeNode
 }
 
-type GenericStackNode[T NodeType] struct {
+type GenericLinkedListNode[T NodeType] struct {
 	value T
-	next  *GenericStackNode[T]
+	next  *GenericLinkedListNode[T]
 }
 
-func NewGenericStackNode[T NodeType](value T) *GenericStackNode[T] {
-	return &GenericStackNode[T]{value: value}
+func NewGenericLinkedListNode[T NodeType](value T) *GenericLinkedListNode[T] {
+	return &GenericLinkedListNode[T]{value: value}
 }
 
 type GenericStack[T NodeType] struct {
-	head *GenericStackNode[T]
+	head *GenericLinkedListNode[T]
 }
 
 func NewGenericStack[T NodeType]() *GenericStack[T] {
@@ -28,7 +28,7 @@ func (s *GenericStack[T]) IsEmptyStack() bool {
 }
 
 func (s *GenericStack[T]) Push(value T) {
-	node := NewGenericStackNode(value)
+	node := NewGenericLinkedListNode(value)
 
 	if s.head == nil {
 		s.head = node

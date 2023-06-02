@@ -129,5 +129,28 @@ func (t *BinaryTree) PostOrderNonRecursive() {
 			break
 		}
 	}
+}
 
+func (t *BinaryTree) LevelOrder() {
+	if t.root == nil {
+		return
+	}
+
+	q := NewGenericQueue[*BinaryTreeNode]()
+
+	q.Enqueue(t.root)
+
+	for !q.IsEmpty() {
+		node, _ := q.Dequeue()
+
+		fmt.Printf("%d ", node.value)
+
+		if node.left != nil {
+			q.Enqueue(node.left)
+		}
+
+		if node.right != nil {
+			q.Enqueue(node.right)
+		}
+	}
 }
