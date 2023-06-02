@@ -91,3 +91,43 @@ func (t *BinaryTree) InOrderNonRecursive() {
 		root = poppedNode.right
 	}
 }
+
+func (t *BinaryTree) PostOrder(node *BinaryTreeNode) {
+	if node != nil {
+		t.PostOrder(node.left)
+		t.PostOrder(node.right)
+		fmt.Printf("%d ", node.value)
+	}
+}
+
+func (t *BinaryTree) PostOrderNonRecursive() {
+	s := NewGenericStack[*BinaryTreeNode]()
+	root := t.root
+	previous := (*BinaryTreeNode)(nil)
+
+	for {
+		for root != nil {
+			s.Push(root)
+			root = root.left
+		}
+
+		for root == nil && !s.IsEmptyStack() {
+			topNode, _ := s.Top()
+			root = topNode
+
+			if root.right == nil || root.right == previous {
+				fmt.Printf("%d ", root.value)
+				s.Pop()
+				previous = root
+				root = nil
+			} else {
+				root = root.right
+			}
+		}
+
+		if s.IsEmptyStack() {
+			break
+		}
+	}
+
+}

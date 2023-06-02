@@ -38,6 +38,16 @@ func (s *GenericStack[T]) Push(value T) {
 	}
 }
 
+func (s *GenericStack[T]) Top() (T, error) {
+	if s.IsEmptyStack() {
+		err := fmt.Errorf("error: stack underflow")
+		var res T // in order to return the default value declare a variable of type T
+		return res, err
+	}
+
+	return s.head.value, nil
+}
+
 func (s *GenericStack[T]) Pop() (T, error) {
 	if s.IsEmptyStack() {
 		err := fmt.Errorf("error: stack underflow")

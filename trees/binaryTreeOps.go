@@ -16,4 +16,9 @@ func BinaryTreeOps() {
 	fmt.Println()
 	t.InOrderNonRecursive()
 	fmt.Println()
+
+	t.PostOrder(t.root)
+	fmt.Println()
+	t.PostOrderNonRecursive()
+	fmt.Println()
 }
