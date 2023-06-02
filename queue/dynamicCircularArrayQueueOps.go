@@ -1,13 +1,12 @@
-package ops
+package queue
 
 import (
-	"dsa-go/queue"
 	"fmt"
 	"math/rand"
 )
 
 func DynamicCircularArrayQueueOps() {
-	q := queue.NewDynamicCircularArrayQueue(10)
+	q := NewDynamicCircularArrayQueue(10)
 	fmt.Println(q)
 
 	fmt.Printf("Trying to Front\n")

@@ -1,12 +1,11 @@
-package ops
+package linkedList
 
 import (
-	"dsa-go/linkedList"
 	"fmt"
 )
 
 func CircularLinkedListOps() {
-	l := linkedList.NewCircularLinkedList([]int{7, 22, 13, 34, 76, 2, 88})
+	l := NewCircularLinkedList([]int{7, 22, 13, 34, 76, 2, 88})
 	fmt.Printf("Length of the circular linked list: %d\n", l.Length())
 	fmt.Println("Traversing the circular linked list: ")
 	l.Traverse()

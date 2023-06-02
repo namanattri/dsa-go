@@ -1,12 +1,11 @@
-package ops
+package queue
 
 import (
-	"dsa-go/queue"
 	"fmt"
 )
 
 func StaticCircularArrayQueueOps() {
-	q := queue.NewStaticCircularArrayQueue(10)
+	q := NewStaticCircularArrayQueue(10)
 	fmt.Println(q)
 
 	fmt.Printf("Trying to Front\n")

@@ -1,12 +1,11 @@
-package ops
+package linkedList
 
 import (
-	"dsa-go/linkedList"
 	"fmt"
 )
 
 func DoublyLinkedListOps() {
-	l := linkedList.NewDoublyLinkeList([]int{7, 22, 13, 34, 76, 2, 88})
+	l := NewDoublyLinkeList([]int{7, 22, 13, 34, 76, 2, 88})
 	fmt.Printf("Length of the doubly linked list: %d\n", l.Length())
 	fmt.Println("Traversing the doubly linked list: ")
 	l.Traverse()

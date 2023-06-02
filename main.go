@@ -1,17 +1,21 @@
 package main
 
-import "dsa-go/ops"
+import (
+	"dsa-go/queue"
+)
 
 func main() {
-	// ops.SinglyLinkedListOps()
-	// ops.DoublyLinkedListOps()
-	// ops.CircularLinkedListOps()
-	// ops.XORLinkedListOps()
-	// ops.UnrolledLinkedListOps()
-	// ops.StaticArrayStackOps()
-	// ops.DynamicArrayStackOps()
-	// ops.LinkedListStackOps()
-	// ops.StaticCircularArrayQueueOps()
-	// ops.DynamicCircularArrayQueueOps()
-	ops.LinkedListQueueOps()
+	// linkedList.SinglyLinkedListOps()
+	// linkedList.DoublyLinkedListOps()
+	// linkedList.CircularLinkedListOps()
+	// linkedList.XORLinkedListOps()
+	// linkedList.UnrolledLinkedListOps()
+
+	// stack.StaticArrayStackOps()
+	// stack.DynamicArrayStackOps()
+	// stack.LinkedListStackOps()
+
+	// queue.StaticCircularArrayQueueOps()
+	// queue.DynamicCircularArrayQueueOps()
+	queue.LinkedListQueueOps()
 }

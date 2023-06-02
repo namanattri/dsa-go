@@ -1,12 +1,11 @@
-package ops
+package linkedList
 
 import (
-	"dsa-go/linkedList"
 	"fmt"
 )
 
 func SinglyLinkedListOps() {
-	l := linkedList.NewSinglyLinkedList([]int{7, 22, 13, 34, 76, 2, 88})
+	l := NewSinglyLinkedList([]int{7, 22, 13, 34, 76, 2, 88})
 	fmt.Printf("Length of the singly linked list: %d\n", l.Length())
 	fmt.Println("Traversing the singly linked list: ")
 	l.Traverse()

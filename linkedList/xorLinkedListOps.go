@@ -1,7 +1,6 @@
-package ops
+package linkedList
 
 import (
-	"dsa-go/linkedList"
 	"fmt"
 )
 
@@ -18,7 +17,7 @@ func XORLinkedListOps() {
 	// b.next == (a ^ c) ^ a == c
 	// b.prev == (a ^ c) ^ c == a
 
-	l := linkedList.NewXORLinkedList([]int{7, 22, 13, 34, 76, 2, 88})
+	l := NewXORLinkedList([]int{7, 22, 13, 34, 76, 2, 88})
 	fmt.Printf("Length of the xor linked list: %d\n", l.Length())
 	fmt.Println("Traversing the XOR linked list: ")
 	l.Traverse()

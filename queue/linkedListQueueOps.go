@@ -1,13 +1,12 @@
-package ops
+package queue
 
 import (
-	"dsa-go/queue"
 	"fmt"
 	"math/rand"
 )
 
 func LinkedListQueueOps() {
-	q := queue.NewLinkedListQueue()
+	q := NewLinkedListQueue()
 	fmt.Println(q)
 
 	fmt.Printf("Trying to Front\n")

@@ -1,12 +1,11 @@
-package ops
+package stack
 
 import (
-	"dsa-go/stack"
 	"fmt"
 )
 
 func LinkedListStackOps() {
-	s := stack.NewLinkedListStack()
+	s := NewLinkedListStack()
 	fmt.Println(s)
 
 	fmt.Printf("Trying to Peek\n")

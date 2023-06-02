@@ -1,12 +1,11 @@
-package ops
+package stack
 
 import (
-	"dsa-go/stack"
 	"fmt"
 )
 
-func DynamicArrayStackOps() {
-	s := stack.NewDynamicArrayStack()
+func StaticArrayStackOps() {
+	s := NewStaticArrayStack()
 	fmt.Println(s)
 
 	fmt.Printf("Trying to Peek\n")

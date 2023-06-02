@@ -1,12 +1,11 @@
-package ops
+package linkedList
 
 import (
-	"dsa-go/linkedList"
 	"fmt"
 )
 
 func UnrolledLinkedListOps() {
-	l := linkedList.NewUnrolledLinkedList([]int{7, 22, 13, 34, 76, 2, 88, 3, 12, 41, 67, 15, 72, 9, 4, 17, 25})
+	l := NewUnrolledLinkedList([]int{7, 22, 13, 34, 76, 2, 88, 3, 12, 41, 67, 15, 72, 9, 4, 17, 25})
 	fmt.Printf("Number of blocks in the unrolled linked list: %d\n", l.Length())
 	fmt.Println("Traversing the unrolled linked list: ")
 	l.Traverse()
