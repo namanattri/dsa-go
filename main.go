@@ -1,7 +1,7 @@
 package main
 
 import (
-	"dsa-go/queue"
+	"dsa-go/trees"
 )
 
 func main() {
@@ -17,5 +17,7 @@ func main() {
 
 	// queue.StaticCircularArrayQueueOps()
 	// queue.DynamicCircularArrayQueueOps()
-	queue.LinkedListQueueOps()
+	// queue.LinkedListQueueOps()
+
+	trees.BinaryTreeOps()
 }

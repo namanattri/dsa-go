@@ -18,6 +18,10 @@ type BinaryTree struct {
 	root *BinaryTreeNode
 }
 
+func NewBinaryTree() *BinaryTree {
+	return &BinaryTree{}
+}
+
 func (t *BinaryTree) Create() {
 	t.root = NewBinaryTreeNode(1)
 
@@ -40,20 +44,20 @@ func (t *BinaryTree) PreOrder(node *BinaryTreeNode) {
 
 func (t *BinaryTree) PreOrderNonRecursive() {
 	s := NewGenericStack[*BinaryTreeNode]()
-	node := t.root
+	root := t.root
 	for {
-		for node != nil {
-			fmt.Printf("%d ", node.value)
-			s.Push(node)
-			node = node.left
+		for root != nil {
+			fmt.Printf("%d ", root.value)
+			s.Push(root)
+			root = root.left
 		}
 
 		if s.IsEmptyStack() {
 			break
 		}
 
-		node, _ := s.Pop()
+		poppedNode, _ := s.Pop()
 
-		node = node.right
+		root = poppedNode.right
 	}
 }
