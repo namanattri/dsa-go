@@ -7,9 +7,15 @@ func ThreadedBinaryTreeOps() {
 
 	t.CreateInorderThreaded()
 
-	t.InOrder()
+	t.InOrderTraversalInOrderTree()
 	fmt.Println()
 
-	t.InOrderAlt()
+	t.InOrderTraversalInOrderTreeAlt()
+	fmt.Println()
+
+	t.PreOrderTraversalInOrderTree()
+	fmt.Println()
+
+	t.PreOrderTraversalInOrderTreeAlt()
 	fmt.Println()
 }

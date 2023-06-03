@@ -82,7 +82,7 @@ func inOrderSuccessor(p *ThreadedBinaryTreeNode) *ThreadedBinaryTreeNode {
 	}
 }
 
-func (t *ThreadedBinaryTree) InOrder() {
+func (t *ThreadedBinaryTree) InOrderTraversalInOrderTree() {
 	p := inOrderSuccessor(t.root)
 	for p != t.root {
 		fmt.Printf("%d ", p.value)
@@ -90,10 +90,45 @@ func (t *ThreadedBinaryTree) InOrder() {
 	}
 }
 
-func (t *ThreadedBinaryTree) InOrderAlt() {
+func (t *ThreadedBinaryTree) InOrderTraversalInOrderTreeAlt() {
 	p := t.root
 	for {
 		p = inOrderSuccessor(p)
+
+		if p == t.root {
+			return
+		}
+
+		fmt.Printf("%d ", p.value)
+	}
+}
+
+func preOrderSuccessor(p *ThreadedBinaryTreeNode) *ThreadedBinaryTreeNode {
+	if p.lTag == 1 {
+		return p.left
+	} else {
+		position := p
+		for position.rTag == 0 {
+			position = position.right
+		}
+		return position.right
+	}
+}
+
+func (t *ThreadedBinaryTree) PreOrderTraversalInOrderTree() {
+	p := preOrderSuccessor(t.root)
+
+	for p != t.root {
+		fmt.Printf("%d ", p.value)
+		p = preOrderSuccessor(p)
+	}
+}
+
+func (t *ThreadedBinaryTree) PreOrderTraversalInOrderTreeAlt() {
+	p := t.root
+
+	for {
+		p = preOrderSuccessor(p)
 
 		if p == t.root {
 			return
