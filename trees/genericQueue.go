@@ -54,3 +54,17 @@ func (q *GenericQueue[T]) Dequeue() (T, error) {
 
 	return node.value, nil
 }
+
+func (q *GenericQueue[T]) String() string {
+	str := "["
+	cursor := q.front
+
+	for cursor != nil {
+		str += fmt.Sprintf("%v -> ", cursor.value)
+		cursor = cursor.next
+	}
+
+	str += "X]"
+
+	return str
+}

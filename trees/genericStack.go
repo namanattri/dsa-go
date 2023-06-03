@@ -3,7 +3,7 @@ package trees
 import "fmt"
 
 type NodeType interface {
-	int | *BinaryTreeNode
+	int | *BinaryTreeNode | *GenericTreeNode
 }
 
 type GenericLinkedListNode[T NodeType] struct {
@@ -59,4 +59,18 @@ func (s *GenericStack[T]) Pop() (T, error) {
 	s.head = s.head.next
 
 	return value, nil
+}
+
+func (s *GenericStack[T]) String() string {
+	str := "["
+	cursor := s.head
+
+	for cursor != nil {
+		str += fmt.Sprintf("%v -> ", cursor.value)
+		cursor = cursor.next
+	}
+
+	str += "X]"
+
+	return str
 }

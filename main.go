@@ -19,5 +19,6 @@ func main() {
 	// queue.DynamicCircularArrayQueueOps()
 	// queue.LinkedListQueueOps()
 
-	trees.BinaryTreeOps()
+	// trees.BinaryTreeOps()
+	trees.GenericTreeOps()
 }

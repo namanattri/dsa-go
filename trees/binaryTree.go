@@ -14,6 +14,10 @@ func NewBinaryTreeNode(value int) *BinaryTreeNode {
 	return &BinaryTreeNode{value: value}
 }
 
+func (n *BinaryTreeNode) String() string {
+	return fmt.Sprintf("%d", n.value)
+}
+
 type BinaryTree struct {
 	root *BinaryTreeNode
 }
