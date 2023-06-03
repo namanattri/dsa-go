@@ -20,5 +20,6 @@ func main() {
 	// queue.LinkedListQueueOps()
 
 	// trees.BinaryTreeOps()
-	trees.GenericTreeOps()
+	// trees.GenericTreeOps()
+	trees.ThreadedBinaryTreeOps()
 }

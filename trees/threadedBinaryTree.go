@@ -26,7 +26,7 @@ func NewThreadedBinaryTree() *ThreadedBinaryTree {
 	// create a dummy node
 	dummyNode := NewThreadedBinaryTreeNode(0)
 	dummyNode.lTag = 0
-	dummyNode.rTag = 0
+	dummyNode.rTag = 1
 	dummyNode.left = dummyNode
 	dummyNode.right = dummyNode
 
@@ -68,4 +68,24 @@ func (t *ThreadedBinaryTree) Create() {
 	t.root.left.right.right.left = t.root.left.right
 	t.root.left.right.right.rTag = 0
 	t.root.left.right.right.right = t.root
+}
+
+func inOrderSuccessor(p *ThreadedBinaryTreeNode) *ThreadedBinaryTreeNode {
+	if p.rTag == 0 {
+		return p.right
+	} else {
+		position := p.right
+		for position.lTag == 1 {
+			position = position.left
+		}
+		return position
+	}
+}
+
+func (t *ThreadedBinaryTree) InOrder() {
+	p := inOrderSuccessor(t.root)
+	for p != t.root {
+		fmt.Printf("%d ", p.value)
+		p = inOrderSuccessor(p)
+	}
 }
