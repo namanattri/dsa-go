@@ -5,8 +5,11 @@ import "fmt"
 func ThreadedBinaryTreeOps() {
 	t := NewThreadedBinaryTree()
 
-	t.Create()
+	t.CreateInorderThreaded()
 
 	t.InOrder()
+	fmt.Println()
+
+	t.InOrderAlt()
 	fmt.Println()
 }

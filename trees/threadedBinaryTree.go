@@ -33,7 +33,7 @@ func NewThreadedBinaryTree() *ThreadedBinaryTree {
 	return &ThreadedBinaryTree{root: dummyNode}
 }
 
-func (t *ThreadedBinaryTree) Create() {
+func (t *ThreadedBinaryTree) CreateInorderThreaded() {
 	t.root.lTag = 1
 	t.root.left = NewThreadedBinaryTreeNode(1)
 
@@ -87,5 +87,18 @@ func (t *ThreadedBinaryTree) InOrder() {
 	for p != t.root {
 		fmt.Printf("%d ", p.value)
 		p = inOrderSuccessor(p)
+	}
+}
+
+func (t *ThreadedBinaryTree) InOrderAlt() {
+	p := t.root
+	for {
+		p = inOrderSuccessor(p)
+
+		if p == t.root {
+			return
+		}
+
+		fmt.Printf("%d ", p.value)
 	}
 }
