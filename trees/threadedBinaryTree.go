@@ -137,3 +137,23 @@ func (t *ThreadedBinaryTree) PreOrderTraversalInOrderTreeAlt() {
 		fmt.Printf("%d ", p.value)
 	}
 }
+
+func (t *ThreadedBinaryTree) InsertRightOfInOrderTree(p *ThreadedBinaryTreeNode, value int) {
+	q := NewThreadedBinaryTreeNode(value)
+	q.rTag = p.rTag
+	q.right = p.right
+	q.lTag = 0
+	q.left = p
+	p.rTag = 1
+	p.right = q
+
+	if q.rTag == 1 { // means p had a right child
+		child := q.right
+
+		// find the left most node starting from the right child and change the left pointer from p to q
+		for child.lTag == 1 {
+			child = child.left
+		}
+		child.left = q
+	}
+}
