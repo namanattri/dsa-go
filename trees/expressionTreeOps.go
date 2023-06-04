@@ -7,6 +7,11 @@ func ExpressionTreeOps() {
 
 	t.CreateFromPostfixExpression([]rune{'A', 'B', 'C', '*', '+', 'D', '/'})
 
-	fmt.Println("Inorder Traversal: ")
+	fmt.Print("Preorder Traversal: ")
+	t.PreOrderNonRecursive()
+	fmt.Println()
+
+	fmt.Print("Inorder Traversal: ")
 	t.InOrderNonRecursive()
+	fmt.Println()
 }

@@ -67,3 +67,24 @@ func (t *ExpressionTree) InOrderNonRecursive() {
 		root = popped.right
 	}
 }
+
+func (t *ExpressionTree) PreOrderNonRecursive() {
+	s := NewGenericStack[*ExpressionTreeNode]()
+	root := t.root
+
+	for {
+		for root != nil {
+			fmt.Printf("%c ", root.value)
+			s.Push(root)
+			root = root.left
+		}
+
+		if s.IsEmptyStack() {
+			break
+		}
+
+		popped, _ := s.Pop()
+
+		root = popped.right
+	}
+}
