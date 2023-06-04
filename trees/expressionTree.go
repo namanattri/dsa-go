@@ -46,28 +46,6 @@ func (t *ExpressionTree) CreateFromPostfixExpression(postfixExpression []rune) {
 	t.root = r
 }
 
-func (t *ExpressionTree) InOrderNonRecursive() {
-	s := NewGenericStack[*ExpressionTreeNode]()
-	root := t.root
-
-	for {
-		for root != nil {
-			s.Push(root)
-			root = root.left
-		}
-
-		if s.IsEmptyStack() {
-			break
-		}
-
-		popped, _ := s.Pop()
-
-		fmt.Printf("%c ", popped.value)
-
-		root = popped.right
-	}
-}
-
 func (t *ExpressionTree) PreOrderNonRecursive() {
 	s := NewGenericStack[*ExpressionTreeNode]()
 	root := t.root
@@ -79,11 +57,33 @@ func (t *ExpressionTree) PreOrderNonRecursive() {
 			root = root.left
 		}
 
-		if s.IsEmptyStack() {
+		if s.IsEmpty() {
 			break
 		}
 
 		popped, _ := s.Pop()
+
+		root = popped.right
+	}
+}
+
+func (t *ExpressionTree) InOrderNonRecursive() {
+	s := NewGenericStack[*ExpressionTreeNode]()
+	root := t.root
+
+	for {
+		for root != nil {
+			s.Push(root)
+			root = root.left
+		}
+
+		if s.IsEmpty() {
+			break
+		}
+
+		popped, _ := s.Pop()
+
+		fmt.Printf("%c ", popped.value)
 
 		root = popped.right
 	}
@@ -100,7 +100,7 @@ func (t *ExpressionTree) PostOrderNonRecursive() {
 			root = root.left
 		}
 
-		for root == nil && !s.IsEmptyStack() {
+		for root == nil && !s.IsEmpty() {
 			top, _ := s.Top()
 
 			if top.right == nil || top.right == previous {
@@ -113,7 +113,7 @@ func (t *ExpressionTree) PostOrderNonRecursive() {
 			}
 		}
 
-		if s.IsEmptyStack() {
+		if s.IsEmpty() {
 			break
 		}
 	}

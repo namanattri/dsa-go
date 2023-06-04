@@ -56,7 +56,7 @@ func (t *BinaryTree) PreOrderNonRecursive() {
 			root = root.left
 		}
 
-		if s.IsEmptyStack() {
+		if s.IsEmpty() {
 			break
 		}
 
@@ -84,7 +84,7 @@ func (t *BinaryTree) InOrderNonRecursive() {
 			root = root.left
 		}
 
-		if s.IsEmptyStack() {
+		if s.IsEmpty() {
 			break
 		}
 
@@ -115,7 +115,7 @@ func (t *BinaryTree) PostOrderNonRecursive() {
 			root = root.left
 		}
 
-		for root == nil && !s.IsEmptyStack() {
+		for root == nil && !s.IsEmpty() {
 			topNode, _ := s.Top()
 			root = topNode
 
@@ -129,7 +129,7 @@ func (t *BinaryTree) PostOrderNonRecursive() {
 			}
 		}
 
-		if s.IsEmptyStack() {
+		if s.IsEmpty() {
 			break
 		}
 	}

@@ -23,7 +23,7 @@ func NewGenericStack[T NodeType]() *GenericStack[T] {
 	return &GenericStack[T]{}
 }
 
-func (s *GenericStack[T]) IsEmptyStack() bool {
+func (s *GenericStack[T]) IsEmpty() bool {
 	return s.head == nil
 }
 
@@ -39,7 +39,7 @@ func (s *GenericStack[T]) Push(value T) {
 }
 
 func (s *GenericStack[T]) Top() (T, error) {
-	if s.IsEmptyStack() {
+	if s.IsEmpty() {
 		err := fmt.Errorf("error: stack underflow")
 		var res T // in order to return the default value declare a variable of type T
 		return res, err
@@ -49,7 +49,7 @@ func (s *GenericStack[T]) Top() (T, error) {
 }
 
 func (s *GenericStack[T]) Pop() (T, error) {
-	if s.IsEmptyStack() {
+	if s.IsEmpty() {
 		err := fmt.Errorf("error: stack underflow")
 		var res T // in order to return the default value declare a variable of type T
 		return res, err
