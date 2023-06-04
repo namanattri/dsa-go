@@ -14,4 +14,8 @@ func ExpressionTreeOps() {
 	fmt.Print("Inorder Traversal: ")
 	t.InOrderNonRecursive()
 	fmt.Println()
+
+	fmt.Print("Postorder Traversal: ")
+	t.PostOrderNonRecursive()
+	fmt.Println()
 }
