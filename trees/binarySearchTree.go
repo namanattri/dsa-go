@@ -78,3 +78,17 @@ func (t *BinarySearchTree) FindMinimumRecursive(root *BinarySearchTreeNode) *Bin
 		return t.FindMinimumRecursive(root.left)
 	}
 }
+
+func (t *BinarySearchTree) FindMinimumNonRecursive() *BinarySearchTreeNode {
+	if t.root == nil {
+		return nil
+	}
+
+	root := t.root
+
+	for root.left != nil {
+		root = root.left
+	}
+
+	return root
+}
