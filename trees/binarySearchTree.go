@@ -104,3 +104,17 @@ func (t *BinarySearchTree) FindMaximumRecursive(root *BinarySearchTreeNode) *Bin
 		return t.FindMaximumRecursive(root.right)
 	}
 }
+
+func (t *BinarySearchTree) FindMaximumNonRecursive() *BinarySearchTreeNode {
+	if t.root == nil {
+		return nil
+	}
+
+	root := t.root
+
+	for root.right != nil {
+		root = root.right
+	}
+
+	return root
+}

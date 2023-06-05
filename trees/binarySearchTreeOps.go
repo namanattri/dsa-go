@@ -17,4 +17,5 @@ func BinarySearchTreeOps() {
 	fmt.Printf("Finding minimum(non-recursively): %s\n", t.FindMinimumNonRecursive())
 
 	fmt.Printf("Finding maximum(recursively): %s\n", t.FindMaximumRecursive(t.root))
+	fmt.Printf("Finding maximum(non-recursively): %s\n", t.FindMaximumNonRecursive())
 }
