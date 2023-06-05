@@ -92,3 +92,15 @@ func (t *BinarySearchTree) FindMinimumNonRecursive() *BinarySearchTreeNode {
 
 	return root
 }
+
+func (t *BinarySearchTree) FindMaximumRecursive(root *BinarySearchTreeNode) *BinarySearchTreeNode {
+	if root == nil {
+		return nil
+	}
+
+	if root.right == nil {
+		return root
+	} else {
+		return t.FindMaximumRecursive(root.right)
+	}
+}
