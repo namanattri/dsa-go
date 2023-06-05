@@ -66,3 +66,15 @@ func (t *BinarySearchTree) FindNonRecursive(value int) *BinarySearchTreeNode {
 
 	return nil
 }
+
+func (t *BinarySearchTree) FindMinimumRecursive(root *BinarySearchTreeNode) *BinarySearchTreeNode {
+	if root == nil {
+		return nil
+	}
+
+	if root.left == nil {
+		return root
+	} else {
+		return t.FindMinimumRecursive(root.left)
+	}
+}
