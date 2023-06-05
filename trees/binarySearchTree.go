@@ -118,3 +118,45 @@ func (t *BinarySearchTree) FindMaximumNonRecursive() *BinarySearchTreeNode {
 
 	return root
 }
+
+func (t *BinarySearchTree) TraverseInorderRecursive(root *BinarySearchTreeNode) {
+	if root == nil {
+		return
+	}
+	t.TraverseInorderRecursive(root.left)
+	fmt.Print(root)
+	t.TraverseInorderRecursive(root.right)
+}
+
+func (t *BinarySearchTree) TraverseInorderNonRecursive() {
+	s := NewGenericStack[*BinarySearchTreeNode]()
+	root := t.root
+
+	for {
+		for root != nil {
+			s.Push(root)
+			root = root.left
+		}
+
+		if s.IsEmpty() {
+			break
+		}
+
+		popped, _ := s.Pop()
+
+		fmt.Print(popped)
+
+		root = popped.right
+	}
+}
+
+func (t *BinarySearchTree) InsertRecursive(root *BinarySearchTreeNode, value int) *BinarySearchTreeNode {
+	if root == nil {
+		root = NewBinarySearchTreeNode(value)
+	} else if value < root.value {
+		root = t.InsertRecursive(root.left, value)
+	} else if value > root.value {
+		root = t.InsertRecursive(root.right, value)
+	} // if value is same as root do nothing
+	return root
+}

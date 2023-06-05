@@ -6,6 +6,12 @@ func BinarySearchTreeOps() {
 	t := NewBinarySearchTree()
 
 	t.Create()
+	fmt.Println("Inorder Recursive Traversal: ")
+	t.TraverseInorderRecursive(t.root)
+	fmt.Println()
+	fmt.Println("Inorder Non-Recursive Traversal: ")
+	t.TraverseInorderNonRecursive()
+	fmt.Println()
 
 	fmt.Printf("Finding %d result(recursively): %s\n", 9, t.FindRecursive(t.root, 9))
 	fmt.Printf("Finding %d result(recursively): %s\n", 11, t.FindRecursive(t.root, 11))
