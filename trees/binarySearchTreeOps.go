@@ -24,4 +24,19 @@ func BinarySearchTreeOps() {
 
 	fmt.Printf("Finding maximum(recursively): %s\n", t.FindMaximumRecursive(t.root))
 	fmt.Printf("Finding maximum(non-recursively): %s\n", t.FindMaximumNonRecursive())
+
+	fmt.Println("Inserting 11")
+	t.InsertRecursive(t.root, 11)
+	t.TraverseInorderNonRecursive()
+	fmt.Println()
+
+	fmt.Println("Inserting 20")
+	t.InsertRecursive(t.root, 20)
+	t.TraverseInorderNonRecursive()
+	fmt.Println()
+
+	fmt.Println("Inserting 2")
+	t.InsertRecursive(t.root, 2)
+	t.TraverseInorderNonRecursive()
+	fmt.Println()
 }

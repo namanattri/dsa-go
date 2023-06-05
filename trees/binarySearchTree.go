@@ -154,9 +154,9 @@ func (t *BinarySearchTree) InsertRecursive(root *BinarySearchTreeNode, value int
 	if root == nil {
 		root = NewBinarySearchTreeNode(value)
 	} else if value < root.value {
-		root = t.InsertRecursive(root.left, value)
+		root.left = t.InsertRecursive(root.left, value)
 	} else if value > root.value {
-		root = t.InsertRecursive(root.right, value)
+		root.right = t.InsertRecursive(root.right, value)
 	} // if value is same as root do nothing
 	return root
 }
