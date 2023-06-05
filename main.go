@@ -22,5 +22,6 @@ func main() {
 	// trees.BinaryTreeOps()
 	// trees.GenericTreeOps()
 	// trees.ThreadedBinaryTreeOps()
-	trees.ExpressionTreeOps()
+	// trees.ExpressionTreeOps()
+	trees.BinarySearchTreeOps()
 }
