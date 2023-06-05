@@ -160,3 +160,27 @@ func (t *BinarySearchTree) InsertRecursive(root *BinarySearchTreeNode, value int
 	} // if value is same as root do nothing
 	return root
 }
+
+func (t *BinarySearchTree) InsertNonRecursive(value int) {
+	root := t.root
+
+	for root != nil {
+		if value == root.value { // do nothing
+			return
+		} else if value < root.value {
+			if root.left == nil {
+				root.left = NewBinarySearchTreeNode(value)
+				return
+			} else {
+				root = root.left
+			}
+		} else {
+			if root.right == nil {
+				root.right = NewBinarySearchTreeNode(value)
+				return
+			} else {
+				root = root.right
+			}
+		}
+	}
+}

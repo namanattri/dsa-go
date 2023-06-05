@@ -36,7 +36,12 @@ func BinarySearchTreeOps() {
 	fmt.Println()
 
 	fmt.Println("Inserting 2")
-	t.InsertRecursive(t.root, 2)
+	t.InsertNonRecursive(2)
+	t.TraverseInorderNonRecursive()
+	fmt.Println()
+
+	fmt.Println("Inserting 12")
+	t.InsertNonRecursive(12)
 	t.TraverseInorderNonRecursive()
 	fmt.Println()
 }
