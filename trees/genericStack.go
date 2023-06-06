@@ -3,7 +3,7 @@ package trees
 import "fmt"
 
 type NodeType interface {
-	int | *BinaryTreeNode | *GenericTreeNode | *ExpressionTreeNode | *BinarySearchTreeNode
+	int | *BinaryTreeNode | *GenericTreeNode | *ExpressionTreeNode | *BinarySearchTreeNode | *AVLTreeNode
 }
 
 type GenericLinkedListNode[T NodeType] struct {

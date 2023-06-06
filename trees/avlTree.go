@@ -1,5 +1,7 @@
 package trees
 
+import "fmt"
+
 type AVLTreeNode struct {
 	value  int
 	left   *AVLTreeNode
@@ -9,6 +11,10 @@ type AVLTreeNode struct {
 
 func NewAVLTreeNode(value int) *AVLTreeNode {
 	return &AVLTreeNode{value: value}
+}
+
+func (n *AVLTreeNode) String() string {
+	return fmt.Sprintf("%d ", n.value)
 }
 
 func (n *AVLTreeNode) SingleRotateLeft() *AVLTreeNode {
@@ -47,21 +53,6 @@ func NewAVLTree() *AVLTree {
 	return &AVLTree{}
 }
 
-func (t *AVLTree) Create() {
-	t.root = NewAVLTreeNode(6)
-	t.root.height = max(height(t.root.left), height(t.root.right)) + 1
-
-	t.root.left = NewAVLTreeNode(5)
-	t.root.left.height = max(height(t.root.left.left), height(t.root.right.right)) + 1
-	t.root.right = NewAVLTreeNode(9)
-	t.root.right.height = max(height(t.root.right.left), height(t.root.right.right)) + 1
-
-	t.root.left.left = NewAVLTreeNode(5)
-	t.root.left.left.height = 0
-	t.root.right.left = NewAVLTreeNode(8)
-	t.root.right.left.height = 0
-}
-
 func (t *AVLTree) Insert(root *AVLTreeNode, value int) *AVLTreeNode {
 	if root == nil {
 		root = NewAVLTreeNode(value)
@@ -89,6 +80,38 @@ func (t *AVLTree) Insert(root *AVLTreeNode, value int) *AVLTreeNode {
 
 	root.height = max(height(root.left), height(root.right)) + 1
 	return root
+}
+
+func (t *AVLTree) InOrder(node *AVLTreeNode) {
+	if node != nil {
+		t.InOrder(node.left)
+		fmt.Printf("%d ", node.value)
+		t.InOrder(node.right)
+	}
+}
+
+func (t *AVLTree) LevelOrder() {
+	if t.root == nil {
+		return
+	}
+
+	q := NewGenericQueue[*AVLTreeNode]()
+
+	q.Enqueue(t.root)
+
+	for !q.IsEmpty() {
+		node, _ := q.Dequeue()
+
+		fmt.Printf("%d ", node.value)
+
+		if node.left != nil {
+			q.Enqueue(node.left)
+		}
+
+		if node.right != nil {
+			q.Enqueue(node.right)
+		}
+	}
 }
 
 func height(n *AVLTreeNode) int {
