@@ -34,6 +34,15 @@ func (t *AVLTree) Create() {
 	t.root.right.left.height = 0
 }
 
+func (n *AVLTreeNode) SingleRotateLeft() *AVLTreeNode {
+	leftChild := n.left
+	n.left = leftChild.right
+	leftChild.right = n
+	leftChild.height = max(height(leftChild.left), height(leftChild.right)) + 1
+	n.height = max(height(n.left), height(n.right)) + 1
+	return leftChild
+}
+
 func height(n *AVLTreeNode) int {
 	if n == nil {
 		return -1
