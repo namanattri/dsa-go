@@ -184,3 +184,26 @@ func (t *BinarySearchTree) InsertNonRecursive(value int) {
 		}
 	}
 }
+
+func (t *BinarySearchTree) Delete(root *BinarySearchTreeNode, value int) *BinarySearchTreeNode {
+	if root == nil {
+		return nil
+	} else if value < root.value {
+		root.left = t.Delete(root.left, value)
+	} else if value > root.value {
+		root.right = t.Delete(root.right, value)
+	} else {
+		if root.left != nil && root.right != nil {
+			node := t.FindMaximumRecursive(root.left)
+			root.value = node.value
+			root.left = t.Delete(root.left, node.value)
+		} else {
+			if root.left == nil {
+				root = root.right
+			} else if root.right == nil {
+				root = root.left
+			}
+		}
+	}
+	return root
+}

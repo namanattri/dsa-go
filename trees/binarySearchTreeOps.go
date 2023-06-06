@@ -44,4 +44,14 @@ func BinarySearchTreeOps() {
 	t.InsertNonRecursive(12)
 	t.TraverseInorderNonRecursive()
 	fmt.Println()
+
+	fmt.Println("Delete 7")
+	t.Delete(t.root, 7)
+	t.TraverseInorderNonRecursive()
+	fmt.Println()
+
+	fmt.Println("Delete 10")
+	t.Delete(t.root, 10)
+	t.TraverseInorderNonRecursive()
+	fmt.Println()
 }
