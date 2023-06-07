@@ -1,7 +1,7 @@
 package main
 
 import (
-	"dsa-go/trees"
+	"dsa-go/heaps"
 )
 
 func main() {
@@ -24,5 +24,6 @@ func main() {
 	// trees.ThreadedBinaryTreeOps()
 	// trees.ExpressionTreeOps()
 	// trees.BinarySearchTreeOps()
-	trees.AVLTreeOps()
+	// trees.AVLTreeOps()
+	heaps.MaxHeapOps()
 }
