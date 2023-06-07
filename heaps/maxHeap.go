@@ -42,3 +42,10 @@ func (h *MaxHeap) String() string {
 
 	return res + "]"
 }
+
+func (h *MaxHeap) ParentOfIndex(index int) int {
+	if index <= 0 || index >= h.count {
+		return -1
+	}
+	return (index - 1) / 2
+}
