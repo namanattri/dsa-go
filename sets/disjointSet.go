@@ -83,3 +83,19 @@ func (d *DisjointSet) UnionBySize(a int, b int) {
 		d.array[b] = a
 	}
 }
+
+// @todo array implementation not working
+func (d *DisjointSet) UnionByHeight(a int, b int) {
+	if d.FindBySize(a) == d.FindBySize(b) && d.FindBySize(a) != -1 {
+		return
+	}
+
+	if d.array[a] < -d.array[b] {
+		d.array[a] = b
+	} else {
+		if d.array[b] == d.array[a] {
+			d.array[a] = b
+			d.array[b]--
+		}
+	}
+}
