@@ -1,4 +1,4 @@
-package sets
+package disjointSet
 
 import "fmt"
 
