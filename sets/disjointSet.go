@@ -51,3 +51,35 @@ func (d *DisjointSet) String() string {
 
 	return res + "]"
 }
+
+func (d *DisjointSet) MakeBySize() {
+	for i := 0; i < d.size; i++ {
+		d.array[i] = -1
+	}
+}
+
+func (d *DisjointSet) FindBySize(x int) int {
+	if x < 0 || x >= d.size {
+		return -1
+	}
+
+	if d.array[x] == -1 {
+		return x
+	} else {
+		return d.Find(d.array[x])
+	}
+}
+
+func (d *DisjointSet) UnionBySize(a int, b int) {
+	if d.FindBySize(a) == d.FindBySize(b) && d.FindBySize(a) != -1 {
+		return
+	}
+
+	if d.array[a] < -d.array[b] {
+		d.array[b] += d.array[a]
+		d.array[a] = b
+	} else {
+		d.array[a] += d.array[b]
+		d.array[b] = a
+	}
+}
