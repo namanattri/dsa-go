@@ -19,9 +19,25 @@ func (h *MaxHeap) Resize() {
 	h.capacity *= 2
 }
 
+// O(nlogn)
 func (h *MaxHeap) Build(values []int) {
 	for _, value := range values {
 		h.Insert(value)
+	}
+}
+
+// O(n)
+func (h *MaxHeap) BuildOptimized(values []int) {
+	n := len(values)
+	for n > h.capacity {
+		h.Resize()
+	}
+
+	copy(h.array[:n], values)
+	h.count = n
+
+	for i := h.ParentOf(h.count); i >= 0; i-- {
+		h.PercolateDown(i)
 	}
 }
 
