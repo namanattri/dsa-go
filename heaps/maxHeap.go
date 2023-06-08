@@ -43,9 +43,32 @@ func (h *MaxHeap) String() string {
 	return res + "]"
 }
 
-func (h *MaxHeap) ParentOfIndex(index int) int {
+func (h *MaxHeap) ParentOf(index int) int {
 	if index <= 0 || index >= h.count {
 		return -1
 	}
 	return (index - 1) / 2
+}
+
+func (h *MaxHeap) LeftChildOf(index int) int {
+	left := 2*index + 1
+	if left >= h.count {
+		return -1
+	}
+	return left
+}
+
+func (h *MaxHeap) RightChildOf(index int) int {
+	right := 2*index + 2
+	if right >= h.count {
+		return -1
+	}
+	return right
+}
+
+func (h *MaxHeap) GetMax() int {
+	if h.count == 0 {
+		return -1
+	}
+	return h.array[0]
 }
