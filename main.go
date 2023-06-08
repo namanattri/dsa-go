@@ -1,7 +1,7 @@
 package main
 
 import (
-	"dsa-go/sets"
+	"dsa-go/disjointSet"
 )
 
 func main() {
@@ -30,5 +30,5 @@ func main() {
 
 	// sets.DisjointSetOps()
 	// sets.DisjointSetBasicOps()
-	sets.DisjointSetSizedOps()
+	disjointSet.DisjointSetSizedOps()
 }
