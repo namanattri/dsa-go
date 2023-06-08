@@ -28,5 +28,6 @@ func main() {
 
 	// heaps.MaxHeapOps()
 
-	sets.DisjointSetOps()
+	// sets.DisjointSetOps()
+	sets.DisjointSetBasicOps()
 }
