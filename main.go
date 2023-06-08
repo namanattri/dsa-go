@@ -30,5 +30,6 @@ func main() {
 
 	// sets.DisjointSetOps()
 	// sets.DisjointSetBasicOps()
-	disjointSet.DisjointSetSizedOps()
+	// disjointSet.DisjointSetSizedOps()
+	disjointSet.DisjointSetRankedOps()
 }
