@@ -19,6 +19,12 @@ func (h *MaxHeap) Resize() {
 	h.capacity *= 2
 }
 
+func (h *MaxHeap) Build(values []int) {
+	for _, value := range values {
+		h.Insert(value)
+	}
+}
+
 func (h *MaxHeap) Insert(value int) {
 	if h.count == h.capacity {
 		h.Resize()
@@ -71,4 +77,38 @@ func (h *MaxHeap) GetMax() int {
 		return -1
 	}
 	return h.array[0]
+}
+
+func (h *MaxHeap) PercolateDown(index int) {
+	max := index
+	left := h.LeftChildOf(index)
+	right := h.RightChildOf(index)
+
+	if left != -1 && h.array[left] > h.array[max] {
+		max = left
+	}
+
+	if right != -1 && h.array[right] > h.array[max] {
+		max = right
+	}
+
+	if max != index {
+		// swap
+		tmp := h.array[index]
+		h.array[index] = h.array[max]
+		h.array[max] = tmp
+
+		h.PercolateDown(max)
+	}
+}
+
+func (h *MaxHeap) DeleteMax() int {
+	if h.count == 0 {
+		return -1
+	}
+	value := h.array[0]
+	h.array[0] = h.array[h.count-1]
+	h.count--
+	h.PercolateDown(0)
+	return value
 }

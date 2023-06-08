@@ -5,23 +5,9 @@ import "fmt"
 func MaxHeapOps() {
 	h := NewMaxHeap()
 
-	fmt.Printf("h: %v\n", h)
+	h.Build([]int{1, 2, 3, 5, 7, 8, 10, 12, 14, 16, 19, 31})
+	fmt.Printf("h = %v\n", h)
 
-	h.Insert(1)
-	fmt.Printf("h: %v\n", h)
+	fmt.Printf("Deleting Max = %d : h = %v\n", h.DeleteMax(), h)
 
-	h.Insert(2)
-	fmt.Printf("h: %v\n", h)
-
-	h.Insert(9)
-	fmt.Printf("h: %v\n", h)
-
-	h.Insert(5)
-	fmt.Printf("h: %v\n", h)
-
-	h.Insert(15)
-	fmt.Printf("h: %v\n", h)
-
-	h.Insert(3)
-	fmt.Printf("h: %v\n", h)
 }
