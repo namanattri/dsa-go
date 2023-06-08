@@ -1,7 +1,7 @@
 package main
 
 import (
-	"dsa-go/heaps"
+	"dsa-go/sets"
 )
 
 func main() {
@@ -25,5 +25,8 @@ func main() {
 	// trees.ExpressionTreeOps()
 	// trees.BinarySearchTreeOps()
 	// trees.AVLTreeOps()
-	heaps.MaxHeapOps()
+
+	// heaps.MaxHeapOps()
+
+	sets.DisjointSetOps()
 }
