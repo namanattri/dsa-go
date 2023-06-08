@@ -34,9 +34,10 @@ func (h *MaxHeap) BuildOptimized(values []int) {
 	}
 
 	copy(h.array[:n], values)
+	fmt.Println(h.array)
 	h.count = n
 
-	for i := h.ParentOf(h.count); i >= 0; i-- {
+	for i := h.ParentOf(h.count - 1); i >= 0; i-- {
 		h.PercolateDown(i)
 	}
 }
@@ -127,4 +128,18 @@ func (h *MaxHeap) DeleteMax() int {
 	h.count--
 	h.PercolateDown(0)
 	return value
+}
+
+func (h *MaxHeap) Sort() {
+	count := h.count
+
+	for i := 0; i < count-1; i++ {
+		// swap first and last
+		tmp := h.array[0]
+		h.array[0] = h.array[h.count-1]
+		h.array[h.count-1] = tmp
+		h.count--
+		h.PercolateDown(0)
+	}
+	h.count = count
 }
