@@ -39,3 +39,14 @@ func (g *AdjListGraph) String() string {
 	}
 	return res
 }
+
+func (g *AdjListGraph) CreateEdge(u rune, v rune) {
+	fmt.Printf("Creating edge (%c, %c)\n", u, v)
+	n := g.adj[g.labelToIndex[u]]
+
+	for n.next != nil {
+		n = n.next
+	}
+
+	n.next = NewLinkedListNode(v)
+}
