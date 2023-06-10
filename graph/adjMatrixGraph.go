@@ -3,13 +3,14 @@ package graph
 import "fmt"
 
 type AdjMatrixGraph struct {
-	V   int
-	E   int
-	adj [][]int
+	V            int
+	E            int
+	adj          [][]int
+	vertexLabels []rune
 }
 
-func NewAdjMatrixGraph(V int, E int) *AdjMatrixGraph {
-	g := &AdjMatrixGraph{V: V, E: E}
+func NewAdjMatrixGraph(V int, E int, vertexLabels []rune) *AdjMatrixGraph {
+	g := &AdjMatrixGraph{V: V, E: E, vertexLabels: vertexLabels}
 	g.adj = make([][]int, V)
 	for u := 0; u < V; u++ {
 		g.adj[u] = make([]int, V)
@@ -21,9 +22,14 @@ func NewAdjMatrixGraph(V int, E int) *AdjMatrixGraph {
 }
 
 func (g *AdjMatrixGraph) String() string {
-	var res string
+	res := " | "
 	for u := 0; u < g.V; u++ {
-		row := "| "
+		res += fmt.Sprintf("%c ", g.vertexLabels[u])
+	}
+	res += "|\n"
+
+	for u := 0; u < g.V; u++ {
+		row := fmt.Sprintf("%c| ", g.vertexLabels[u])
 		for v := 0; v < g.V; v++ {
 			row += fmt.Sprintf("%d ", g.adj[u][v])
 		}
