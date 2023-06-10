@@ -8,11 +8,13 @@ type AdjMatrixGraph struct {
 	adj          [][]int
 	vertexLabels []rune
 	directed     bool
+	visited      []bool
 }
 
 func NewAdjMatrixGraph(V int, E int, vertexLabels []rune, directed bool) *AdjMatrixGraph {
 	g := &AdjMatrixGraph{V: V, E: E, vertexLabels: vertexLabels, directed: directed}
 	g.adj = make([][]int, V)
+	g.visited = make([]bool, V)
 	for u := 0; u < V; u++ {
 		g.adj[u] = make([]int, V)
 		for v := 0; v < V; v++ {
@@ -48,5 +50,24 @@ func (g *AdjMatrixGraph) CreateEdge(u int, v int) {
 
 	if !g.directed {
 		g.adj[v][u] = 1
+	}
+}
+
+func (g *AdjMatrixGraph) DFSTraversal() {
+	for i := 0; i < g.V; i++ {
+		if !g.visited[i] {
+			g.DFS(i)
+		}
+	}
+}
+
+func (g *AdjMatrixGraph) DFS(u int) {
+	fmt.Printf("%c ", g.vertexLabels[u])
+	g.visited[u] = true
+
+	for v := 0; v < g.V; v++ {
+		if !g.visited[v] && g.adj[u][v] == 1 {
+			g.DFS(v)
+		}
 	}
 }
