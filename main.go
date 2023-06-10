@@ -1,7 +1,7 @@
 package main
 
 import (
-	"dsa-go/disjointSet"
+	"dsa-go/graph"
 )
 
 func main() {
@@ -32,5 +32,7 @@ func main() {
 	// sets.DisjointSetBasicOps()
 	// disjointSet.DisjointSetSizedOps()
 	// disjointSet.DisjointSetRankedOps()
-	disjointSet.DisjointSetRankedPathCompressionOps()
+	// disjointSet.DisjointSetRankedPathCompressionOps()
+
+	graph.AdjMatrixGraphOps()
 }
