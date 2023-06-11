@@ -58,7 +58,7 @@ func AdjListGraphOps() {
 
 	fmt.Println(g)
 
-	g2.CalculatePathsAndDistances('C')
+	g2.UnweightedShortestPathCalculation('C')
 	fmt.Println(g2.DistanceTableFor())
 }
 

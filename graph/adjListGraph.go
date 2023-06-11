@@ -121,7 +121,7 @@ func (g *AdjListGraph) BFS(vertex rune) {
 	}
 }
 
-func (g *AdjListGraph) CalculatePathsAndDistances(source rune) {
+func (g *AdjListGraph) UnweightedShortestPathCalculation(source rune) {
 	g.distance = make(map[rune]int)
 	g.path = make(map[rune]rune)
 
