@@ -111,3 +111,29 @@ func (h *MinHeap) Insert(value rune, priority int) {
 
 	h.array[index] = n
 }
+
+// @TODO make it optimal
+func (h *MinHeap) UpdatePriority(value rune, priority int) {
+	// find the node with value
+	index := h.IndexOf(value)
+
+	h.array[index].priority = priority
+
+	array := h.array
+
+	count := h.count
+	h.count = 0
+
+	for i := 0; i < count; i++ {
+		h.Insert(array[i].value, array[i].priority)
+	}
+}
+
+func (h *MinHeap) IndexOf(value rune) int {
+	for index, v := range h.array {
+		if v.value == value {
+			return index
+		}
+	}
+	return -1
+}
