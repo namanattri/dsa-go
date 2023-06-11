@@ -150,8 +150,7 @@ func (g *AdjListGraph) CalculatePathsAndDistances(source rune) {
 	}
 }
 
-func (g *AdjListGraph) DistanceTableFor(source rune) string {
-	g.CalculatePathsAndDistances(source)
+func (g *AdjListGraph) DistanceTableFor() string {
 	res := "Vertex\tDistance\tPathFrom\n"
 
 	for _, vertex := range g.vertices {

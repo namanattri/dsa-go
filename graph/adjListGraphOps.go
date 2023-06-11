@@ -58,7 +58,8 @@ func AdjListGraphOps() {
 
 	fmt.Println(g)
 
-	fmt.Println(g2.DistanceTableFor('C'))
+	g2.CalculatePathsAndDistances('C')
+	fmt.Println(g2.DistanceTableFor())
 }
 
 func createEdges(g *AdjListGraph, edges [][]rune) {
