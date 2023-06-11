@@ -18,8 +18,4 @@ func AdjListGraphOps() {
 	fmt.Println(g)
 	g.CreateEdge('C', 'D')
 	fmt.Println(g)
-
-	fmt.Println(g)
-
-	fmt.Println(g)
 }
