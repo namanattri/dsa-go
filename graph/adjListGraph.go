@@ -122,6 +122,9 @@ func (g *AdjListGraph) BFS(vertex rune) {
 }
 
 func (g *AdjListGraph) CalculatePathsAndDistances(source rune) {
+	g.distance = make(map[rune]int)
+	g.path = make(map[rune]rune)
+
 	for _, vertex := range g.vertices {
 		g.distance[vertex] = -1
 	}
@@ -152,7 +155,7 @@ func (g *AdjListGraph) DistanceTableFor(source rune) string {
 	res := "Vertex\tDistance\tPathFrom\n"
 
 	for _, vertex := range g.vertices {
-		res += fmt.Sprintf("%c\t%d\t%c\n", vertex, g.distance[vertex], g.path[vertex])
+		res += fmt.Sprintf("%c\t%d\t\t%c\n", vertex, g.distance[vertex], g.path[vertex])
 	}
 
 	return res

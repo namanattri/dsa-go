@@ -8,42 +8,55 @@ func AdjListGraphOps() {
 	fmt.Println("Empty directed graph")
 	fmt.Println(g)
 
-	g.CreateEdge('A', 'B')
-	fmt.Println(g)
-	g.CreateEdge('B', 'A')
-	fmt.Println(g)
-	g.CreateEdge('B', 'C')
-	fmt.Println(g)
-	g.CreateEdge('B', 'H')
-	fmt.Println(g)
-	g.CreateEdge('C', 'B')
-	fmt.Println(g)
-	g.CreateEdge('C', 'D')
-	fmt.Println(g)
-	g.CreateEdge('C', 'E')
-	fmt.Println(g)
-	g.CreateEdge('D', 'C')
-	fmt.Println(g)
-	g.CreateEdge('E', 'B')
-	fmt.Println(g)
-	g.CreateEdge('E', 'F')
-	fmt.Println(g)
-	g.CreateEdge('E', 'G')
-	fmt.Println(g)
-	g.CreateEdge('E', 'H')
-	fmt.Println(g)
-	g.CreateEdge('F', 'E')
-	fmt.Println(g)
-	g.CreateEdge('G', 'E')
-	fmt.Println(g)
-	g.CreateEdge('H', 'E')
-	fmt.Println(g)
-	g.CreateEdge('H', 'B')
-	fmt.Println(g)
+	edges := [][]rune{
+		{'A', 'B'},
+		{'B', 'A'},
+		{'B', 'C'},
+		{'B', 'H'},
+		{'C', 'B'},
+		{'C', 'D'},
+		{'C', 'E'},
+		{'D', 'C'},
+		{'E', 'B'},
+		{'E', 'F'},
+		{'E', 'G'},
+		{'E', 'H'},
+		{'F', 'E'},
+		{'G', 'E'},
+		{'H', 'E'},
+		{'H', 'B'},
+	}
 
+	createEdges(g, edges)
+
+	fmt.Print("DFS: ")
 	g.TraverseByDFS()
 	fmt.Println()
+
+	fmt.Print("BFS: ")
 	g.TraverseByBFS()
 	fmt.Println()
 
+	g2 := NewAdjListGraph([]rune{'A', 'B', 'C', 'D', 'E', 'F', 'G'})
+
+	edges = [][]rune{
+		{'A', 'B'},
+		{'A', 'D'},
+		{'B', 'D'},
+		{'B', 'E'},
+		{'C', 'A'},
+		{'C', 'F'},
+		{'D', 'F'},
+		{'D', 'G'},
+		{'E', 'G'},
+		{'G', 'F'},
+	}
+
+	createEdges(g2, edges)
+}
+
+func createEdges(g *AdjListGraph, edges [][]rune) {
+	for _, edge := range edges {
+		g.CreateEdge(edge[0], edge[1])
+	}
 }
