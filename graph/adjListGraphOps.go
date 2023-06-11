@@ -29,6 +29,8 @@ func AdjListGraphOps() {
 
 	createEdges(g, edges)
 
+	fmt.Println(g)
+
 	fmt.Print("DFS: ")
 	g.TraverseByDFS()
 	fmt.Println()
@@ -53,6 +55,10 @@ func AdjListGraphOps() {
 	}
 
 	createEdges(g2, edges)
+
+	fmt.Println(g)
+
+	fmt.Println(g2.DistanceTableFor('C'))
 }
 
 func createEdges(g *AdjListGraph, edges [][]rune) {
