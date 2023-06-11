@@ -15,6 +15,8 @@ type AdjListGraph struct {
 	vertices []rune
 	adj      map[rune]*LinkedListNode // array of adj list pointers
 	visited  map[rune]bool
+	distance map[rune]int
+	path     map[rune]rune
 }
 
 func NewAdjListGraph(vertices []rune) *AdjListGraph {
@@ -112,6 +114,32 @@ func (g *AdjListGraph) BFS(vertex rune) {
 
 		for cursor != nil {
 			if !g.visited[cursor.vertex] {
+				q.Enqueue(cursor.vertex)
+			}
+			cursor = cursor.next
+		}
+	}
+}
+
+func (g *AdjListGraph) CalculatePathsAndDistances(source rune) {
+	for _, vertex := range g.vertices {
+		g.distance[vertex] = -1
+	}
+	g.distance[source] = 0
+
+	q := NewQueue()
+
+	q.Enqueue(source)
+
+	for !q.IsEmpty() {
+		v, _ := q.Dequeue()
+
+		cursor := g.adj[v.value]
+
+		for cursor != nil {
+			if g.distance[cursor.vertex] == -1 {
+				g.distance[cursor.vertex] = g.distance[v.value] + 1
+				g.path[cursor.vertex] = v.value
 				q.Enqueue(cursor.vertex)
 			}
 			cursor = cursor.next
