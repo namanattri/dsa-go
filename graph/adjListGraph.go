@@ -12,11 +12,14 @@ func NewLinkedListNode(vertex rune) *LinkedListNode {
 }
 
 type AdjListGraph struct {
-	adj map[rune]*LinkedListNode // array of adj list pointers
+	vertices []rune
+	adj      map[rune]*LinkedListNode // array of adj list pointers
+	visited  map[rune]bool
 }
 
 func NewAdjListGraph(vertices []rune) *AdjListGraph {
 	g := &AdjListGraph{}
+	g.vertices = vertices
 	g.adj = make(map[rune]*LinkedListNode)
 
 	for _, vertex := range vertices {
@@ -27,8 +30,9 @@ func NewAdjListGraph(vertices []rune) *AdjListGraph {
 
 func (g *AdjListGraph) String() string {
 	var res string
-	for vertex, n := range g.adj {
+	for _, vertex := range g.vertices {
 		res += fmt.Sprintf("%c: ", vertex)
+		n := g.adj[vertex]
 		for n != nil {
 			res += fmt.Sprintf("%c -> ", n.vertex)
 			n = n.next
@@ -53,4 +57,28 @@ func (g *AdjListGraph) CreateEdge(u rune, v rune) {
 	}
 
 	n.next = newNode
+}
+
+func (g *AdjListGraph) TraverseByDFS() {
+	g.visited = make(map[rune]bool)
+
+	for _, vertex := range g.vertices {
+		if !g.visited[vertex] {
+			g.DFS(vertex)
+		}
+	}
+}
+
+func (g *AdjListGraph) DFS(vertex rune) {
+	g.visited[vertex] = true
+	fmt.Printf("%c ", vertex)
+
+	cursor := g.adj[vertex]
+
+	for cursor != nil {
+		if !g.visited[cursor.vertex] {
+			g.DFS(cursor.vertex)
+		}
+		cursor = cursor.next
+	}
 }
