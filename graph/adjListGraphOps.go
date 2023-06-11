@@ -43,4 +43,6 @@ func AdjListGraphOps() {
 
 	g.TraverseByDFS()
 	fmt.Println()
+	g.TraverseByBFS()
+	fmt.Println()
 }

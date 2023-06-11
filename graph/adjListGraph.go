@@ -82,3 +82,39 @@ func (g *AdjListGraph) DFS(vertex rune) {
 		cursor = cursor.next
 	}
 }
+
+func (g *AdjListGraph) TraverseByBFS() {
+	g.visited = make(map[rune]bool)
+
+	for _, vertex := range g.vertices {
+		if !g.visited[vertex] {
+			g.BFS(vertex)
+		}
+	}
+}
+
+func (g *AdjListGraph) BFS(vertex rune) {
+	q := NewQueue()
+
+	q.Enqueue(vertex)
+
+	for !q.IsEmpty() {
+		n, _ := q.Dequeue()
+
+		vertex = n.value
+
+		if !g.visited[vertex] {
+			fmt.Printf("%c ", vertex)
+			g.visited[vertex] = true
+		}
+
+		cursor := g.adj[vertex]
+
+		for cursor != nil {
+			if !g.visited[cursor.vertex] {
+				q.Enqueue(cursor.vertex)
+			}
+			cursor = cursor.next
+		}
+	}
+}
