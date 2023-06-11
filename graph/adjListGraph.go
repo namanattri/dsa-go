@@ -12,25 +12,23 @@ func NewLinkedListNode(vertex rune) *LinkedListNode {
 }
 
 type AdjListGraph struct {
-	adj          []*LinkedListNode // array of adj list pointers
-	labelToIndex map[rune]int
+	adj map[rune]*LinkedListNode // array of adj list pointers
 }
 
 func NewAdjListGraph(vertices []rune) *AdjListGraph {
 	g := &AdjListGraph{}
-	g.adj = make([]*LinkedListNode, len(vertices))
-	g.labelToIndex = make(map[rune]int)
+	g.adj = make(map[rune]*LinkedListNode)
 
-	for i, vertex := range vertices {
-		g.adj[i] = NewLinkedListNode(vertex)
-		g.labelToIndex[vertex] = i
+	for _, vertex := range vertices {
+		g.adj[vertex] = nil
 	}
 	return g
 }
 
 func (g *AdjListGraph) String() string {
 	var res string
-	for _, n := range g.adj {
+	for vertex, n := range g.adj {
+		res += fmt.Sprintf("%c: ", vertex)
 		for n != nil {
 			res += fmt.Sprintf("%c -> ", n.vertex)
 			n = n.next
@@ -42,11 +40,17 @@ func (g *AdjListGraph) String() string {
 
 func (g *AdjListGraph) CreateEdge(u rune, v rune) {
 	fmt.Printf("Creating edge (%c, %c)\n", u, v)
-	n := g.adj[g.labelToIndex[u]]
+	newNode := NewLinkedListNode(v)
+	n := g.adj[u]
+
+	if n == nil {
+		g.adj[u] = newNode
+		return
+	}
 
 	for n.next != nil {
 		n = n.next
 	}
 
-	n.next = NewLinkedListNode(v)
+	n.next = newNode
 }
