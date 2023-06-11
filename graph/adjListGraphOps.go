@@ -62,10 +62,28 @@ func AdjListGraphOps() {
 
 	createEdges(g2, edges)
 
-	fmt.Println(g)
+	fmt.Println(g2)
 
 	g2.UnweightedShortestPathCalculation('C')
 	fmt.Println(g2.DistanceTableFor())
+
+	g3 := NewAdjListGraph([]rune{'A', 'B', 'C', 'D', 'E'})
+
+	edges = []edge{
+		{'A', 'B', 4},
+		{'A', 'C', 1},
+		{'B', 'E', 4},
+		{'C', 'B', 2},
+		{'C', 'D', 4},
+		{'D', 'E', 4},
+	}
+
+	createEdges(g3, edges)
+
+	fmt.Println(g3)
+
+	g3.DijkstrasShortestPathCalculation('A')
+	fmt.Println(g3.DistanceTableFor())
 }
 
 func createEdges(g *AdjListGraph, edges []edge) {
