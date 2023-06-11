@@ -1,14 +1,17 @@
 package graph
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type LinkedListNode struct {
 	vertex rune
+	weight int
 	next   *LinkedListNode
 }
 
-func NewLinkedListNode(vertex rune) *LinkedListNode {
-	return &LinkedListNode{vertex: vertex}
+func NewLinkedListNode(vertex rune, weight int) *LinkedListNode {
+	return &LinkedListNode{vertex: vertex, weight: weight}
 }
 
 type AdjListGraph struct {
@@ -44,9 +47,9 @@ func (g *AdjListGraph) String() string {
 	return res
 }
 
-func (g *AdjListGraph) CreateEdge(u rune, v rune) {
+func (g *AdjListGraph) CreateEdge(u rune, v rune, weight int) {
 	fmt.Printf("Creating edge (%c, %c)\n", u, v)
-	newNode := NewLinkedListNode(v)
+	newNode := NewLinkedListNode(v, weight)
 	n := g.adj[u]
 
 	if n == nil {
@@ -144,6 +147,40 @@ func (g *AdjListGraph) UnweightedShortestPathCalculation(source rune) {
 				g.distance[cursor.vertex] = g.distance[v.value] + 1
 				g.path[cursor.vertex] = v.value
 				q.Enqueue(cursor.vertex)
+			}
+			cursor = cursor.next
+		}
+	}
+}
+
+func (g *AdjListGraph) DijkstrasShortestPathCalculation(source rune) {
+	h := NewMinHeap()
+	h.Insert(source, 0)
+
+	g.distance = make(map[rune]int)
+	g.path = make(map[rune]rune)
+
+	for _, vertex := range g.vertices {
+		g.distance[vertex] = -1
+	}
+	g.distance[source] = 0
+
+	for !h.IsEmpty() {
+		n, _ := h.DeleteMin()
+
+		cursor := g.adj[n.value]
+
+		for cursor != nil {
+			d := g.distance[n.value] + cursor.weight
+			if g.distance[cursor.vertex] == -1 {
+				g.distance[cursor.vertex] = d
+				h.Insert(cursor.vertex, d)
+				g.path[cursor.vertex] = n.value
+			}
+
+			if g.distance[cursor.vertex] > d {
+				g.distance[cursor.vertex] = d
+				h.UpdatePriority(cursor.vertex, d)
 			}
 			cursor = cursor.next
 		}
