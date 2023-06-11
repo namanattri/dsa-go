@@ -26,4 +26,7 @@ func AdjMatrixGraphOps() {
 	fmt.Println(g)
 
 	g.DFSTraversal()
+	fmt.Println()
+	g.BFSTraversal()
+	fmt.Println()
 }

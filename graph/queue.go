@@ -20,6 +20,23 @@ func NewQueue() *Queue {
 	return &Queue{}
 }
 
+func (q *Queue) String() string {
+	res := "["
+
+	cursor := q.head
+
+	for cursor != nil {
+		res += fmt.Sprintf("%c -> ", cursor.value)
+		cursor = cursor.next
+	}
+
+	return res + "X]"
+}
+
+func (q *Queue) IsEmpty() bool {
+	return q.head == nil
+}
+
 func (q *Queue) Enqueue(value rune) {
 	n := NewQueueNode(value)
 	if q.head == nil {

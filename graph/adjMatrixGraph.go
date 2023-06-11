@@ -57,9 +57,9 @@ func (g *AdjMatrixGraph) CreateEdge(u rune, v rune) {
 func (g *AdjMatrixGraph) DFSTraversal() {
 	g.visited = make(map[rune]bool)
 
-	for _, vertex := range g.vertices {
-		if !g.visited[vertex] {
-			g.DFS(vertex)
+	for _, u := range g.vertices {
+		if !g.visited[u] {
+			g.DFS(u)
 		}
 	}
 }
@@ -71,6 +71,40 @@ func (g *AdjMatrixGraph) DFS(u rune) {
 	for _, v := range g.vertices {
 		if !g.visited[v] && g.adj[u][v] == 1 {
 			g.DFS(v)
+		}
+	}
+}
+
+func (g *AdjMatrixGraph) BFSTraversal() {
+	g.visited = make(map[rune]bool)
+
+	for _, u := range g.vertices {
+		if !g.visited[u] {
+			g.BFS(u)
+		}
+	}
+}
+
+func (g *AdjMatrixGraph) BFS(u rune) {
+	q := NewQueue()
+
+	q.Enqueue(u)
+
+	for !q.IsEmpty() {
+		// fmt.Println(q)
+		n, _ := q.Dequeue()
+		u = n.value
+
+		if !g.visited[u] {
+			fmt.Printf("%c ", u)
+		}
+
+		g.visited[u] = true
+
+		for _, v := range g.vertices {
+			if !g.visited[v] && g.adj[u][v] == 1 {
+				q.Enqueue(v)
+			}
 		}
 	}
 }
