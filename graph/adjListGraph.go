@@ -146,3 +146,14 @@ func (g *AdjListGraph) CalculatePathsAndDistances(source rune) {
 		}
 	}
 }
+
+func (g *AdjListGraph) DistanceTableFor(source rune) string {
+	g.CalculatePathsAndDistances(source)
+	res := "Vertex\tDistance\tPathFrom\n"
+
+	for _, vertex := range g.vertices {
+		res += fmt.Sprintf("%c\t%d\t%c\n", vertex, g.distance[vertex], g.path[vertex])
+	}
+
+	return res
+}
