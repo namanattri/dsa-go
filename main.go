@@ -35,5 +35,6 @@ func main() {
 	// disjointSet.DisjointSetRankedPathCompressionOps()
 
 	// graph.AdjMatrixGraphOps()
-	graph.AdjListGraphOps()
+	// graph.AdjListGraphOps()
+	graph.HeapOps()
 }
