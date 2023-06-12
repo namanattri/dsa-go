@@ -2,6 +2,7 @@ package graph
 
 import (
 	"fmt"
+	"math"
 )
 
 type LinkedListNode struct {
@@ -183,6 +184,38 @@ func (g *AdjListGraph) DijkstrasShortestPathCalculation(source rune) {
 				h.UpdatePriority(cursor.vertex, d)
 			}
 			cursor = cursor.next
+		}
+	}
+}
+
+func (g *AdjListGraph) BellmanFordAlgorithm(source rune) {
+	g.distance = make(map[rune]int)
+	g.path = make(map[rune]rune)
+
+	for _, vertex := range g.vertices {
+		g.distance[vertex] = math.MaxInt64
+	}
+	g.distance[source] = 0
+
+	q := NewQueue()
+
+	q.Enqueue(source)
+
+	for !q.IsEmpty() {
+		v, _ := q.Dequeue()
+
+		cursor := g.adj[v.value]
+
+		for cursor != nil {
+			d := g.distance[v.value] + cursor.weight
+			if g.distance[cursor.vertex] > d {
+				g.distance[v.value] = g.distance[v.value] + cursor.weight
+				g.path[cursor.vertex] = v.value
+
+				if !q.Has(cursor.vertex) {
+					q.Enqueue(cursor.vertex)
+				}
+			}
 		}
 	}
 }
