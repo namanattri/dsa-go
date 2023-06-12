@@ -12,12 +12,13 @@ func NewQueueNode(value rune) *QueueNode {
 }
 
 type Queue struct {
-	head *QueueNode
-	tail *QueueNode
+	head     *QueueNode
+	tail     *QueueNode
+	elements map[rune]bool
 }
 
 func NewQueue() *Queue {
-	return &Queue{}
+	return &Queue{elements: make(map[rune]bool)}
 }
 
 func (q *Queue) String() string {
@@ -37,7 +38,12 @@ func (q *Queue) IsEmpty() bool {
 	return q.head == nil
 }
 
+func (q *Queue) Has(value rune) bool {
+	return q.elements[value]
+}
+
 func (q *Queue) Enqueue(value rune) {
+	q.elements[value] = true
 	n := NewQueueNode(value)
 	if q.head == nil {
 		q.head = n
@@ -60,6 +66,8 @@ func (q *Queue) Dequeue() (*QueueNode, error) {
 	} else {
 		q.head = q.head.next
 	}
+
+	q.elements[n.value] = false
 
 	return n, nil
 }
