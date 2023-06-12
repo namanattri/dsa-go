@@ -84,6 +84,24 @@ func AdjListGraphOps() {
 
 	g3.DijkstrasShortestPathCalculation('A')
 	fmt.Println(g3.DistanceTableFor())
+
+	g4 := NewAdjListGraph([]rune{'A', 'B', 'C', 'D', 'E'})
+
+	edges = []edge{
+		{'A', 'B', 4},
+		{'A', 'C', 1},
+		{'B', 'E', 4},
+		{'C', 'B', -2},
+		{'C', 'D', 4},
+		{'D', 'E', -4},
+	}
+
+	createEdges(g4, edges)
+
+	fmt.Println(g4)
+
+	g4.BellmanFordAlgorithm('A')
+	fmt.Println(g4.DistanceTableFor())
 }
 
 func createEdges(g *AdjListGraph, edges []edge) {

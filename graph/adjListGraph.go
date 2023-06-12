@@ -216,6 +216,7 @@ func (g *AdjListGraph) BellmanFordAlgorithm(source rune) {
 					q.Enqueue(cursor.vertex)
 				}
 			}
+			cursor = cursor.next
 		}
 	}
 }
